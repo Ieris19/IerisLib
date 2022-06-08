@@ -71,11 +71,9 @@ public class Card {
 	 * <code>suit</code>
 	 */
 	public String getCardName() {
-		String cardType = "";
 		if (getCardValue().equals(SUITS[4]) || suit.equals(SUITS[4]))
 			return SUITS[4];
-		cardType += getCardValue() + " of " + suit;
-		return cardType;
+		return getCardValue() + " of " + suit;
 	}
 
 	/**
