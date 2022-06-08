@@ -56,7 +56,10 @@ public class Console {
 	 * @see Command
 	 */
 	public synchronized void addCommand(Command command) {
-		commandMap.put(command.getName(), command);
+		if (!launched)
+			commandMap.put(command.getName(), command);
+		else
+			throw new IllegalStateException("Console has already launched");
 	}
 
 	/**
