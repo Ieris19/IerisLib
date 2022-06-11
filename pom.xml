@@ -16,6 +16,7 @@
         <module>ierislib.scoreboard</module>
         <module>ierislib.properties</module>
         <module>ierislib.cli</module>
+        <module>ierislib.security</module>
     </modules>
 
     <properties>
