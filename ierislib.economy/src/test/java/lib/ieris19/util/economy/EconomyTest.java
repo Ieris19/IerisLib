@@ -1,4 +1,4 @@
-package ib.ieris19.util.economy;
+package lib.ieris19.util.economy;
 
 import lib.ieris19.util.economy.Money;
 import org.junit.jupiter.api.BeforeEach;
@@ -89,7 +89,7 @@ import static lib.ieris19.util.economy.Money.*;
 				}
 
 				@Test @DisplayName ("Negligible amount rounded up") void addSmall() {
-					assertThrows(IllegalArgumentException.class, () -> account.addMoney(0.008));
+					assertDoesNotThrow(() -> account.addMoney(0.008));
 				}
 			}
 
