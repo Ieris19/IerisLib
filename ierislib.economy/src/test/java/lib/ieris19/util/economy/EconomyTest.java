@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static lib.ieris19.util.economy.Money.*;
 
@@ -20,9 +22,9 @@ import static lib.ieris19.util.economy.Money.*;
 		wallet = new Money(INITIAL_VALUE);
 	}
 
-	@Nested @DisplayName ("MoneyTest") class MoneyTest {
-		@Nested @DisplayName ("Tests related to the setter") class SetterTest {
-			@Nested @DisplayName ("Throws an exceptions for values outside limits") class OutOfBoundsTest {
+	@Nested @DisplayName ("Money Unit Tests") class MoneyTest {
+		@Nested @DisplayName ("Setter") class SetterTest {
+			@Nested @DisplayName ("Values outside limits") class OutOfBoundsTest {
 				@Test @DisplayName ("Overflow MAX") void maxOverflow() {
 					assertThrows(IllegalArgumentException.class, () -> account.setAmount(Long.MAX_VALUE));
 				}
@@ -32,23 +34,23 @@ import static lib.ieris19.util.economy.Money.*;
 				}
 			}
 
-			@Nested @DisplayName ("Set to limit values") class EdgeValueTests {
-				@Test @DisplayName ("Set value to max") void minLimit() {
+			@Nested @DisplayName ("Limit Values") class EdgeValueTests {
+				@Test @DisplayName ("Max value") void minLimit() {
 					assertDoesNotThrow(() -> account.setAmount(MAX_MONEY));
 				}
 
-				@Test @DisplayName ("Set value to min") void maxLimit() {
+				@Test @DisplayName ("Min value") void maxLimit() {
 					assertDoesNotThrow(() -> account.setAmount(MIN_MONEY));
 				}
 			}
 
-			@Nested @DisplayName ("Setting regular values") class NormalValueTest {
-				@Test @DisplayName ("Positive Integer within range") void positiveInRange() {
-					assertDoesNotThrow(() -> account.setAmount(5000));
+			@Nested @DisplayName ("Regular Values") class NormalValueTest {
+				@Test @DisplayName ("Positive") void positiveInRange() {
+					assertDoesNotThrow(() -> account.setAmount(new Random().nextDouble(0, MAX_MONEY)));
 				}
 
 				@Test @DisplayName ("Negative Integer within range") void negativeInRange() {
-					assertDoesNotThrow(() -> account.setAmount(-5000));
+					assertDoesNotThrow(() -> account.setAmount(new Random().nextDouble(MIN_MONEY, 0)));
 				}
 			}
 
